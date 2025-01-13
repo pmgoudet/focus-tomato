@@ -4,6 +4,7 @@
     --lightred: #FBD1DA;
     --tomato: #BF0E1E;
     --lightgreen: #BDEAD7;
+    --lightblue: #A4DCFF;
     --darkgreen: #002A29;
     --shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
 }
@@ -16,12 +17,27 @@
     color: var(--darkgreen);
 }
 
+[data-context="focus"] {
+    --bg-image: url(assets/img/bg-foco.png);
+    --bg-color: var(--lightred);
+}
+
+[data-context="short"] {
+    --bg-image: url(assets/img/bg-short.png);
+    --bg-color: var(--lightgreen);
+}
+
+[data-context="long"] {
+    --bg-image: url(assets/img/bg-long.png);
+    --bg-color: var(--lightblue);
+}
+
 body {
     overflow-x: hidden;
     height: calc(100vh - 50px);
     width: 100vw;
-    background-color: var(--lightred);
-    background-image: url(assets/img/bg-foco.png);
+    background-color:var(--bg-color);
+    background-image: var(--bg-image);
     background-repeat: no-repeat;
     background-position: right bottom;
     background-size: contain;
@@ -104,13 +120,18 @@ main {
     border-radius: 5px;
     background-color: transparent;
     padding: 5px 10px;
+    transition: 0.2s;
+}
+
+.btn-context:hover {
+    box-shadow: var(--shadow);
 }
 
 .context-item .active {
     box-shadow: var(--shadow);
 }
 
-.clock {
+#clock {
     font-size: 120px;
     font-weight: 900;
     text-align: center;
@@ -131,7 +152,7 @@ main {
     padding: 10px;
     border-radius: 5px;
     box-shadow: var(--shadow);
-    
+
     .urgent-container__text {
         font-size: 12px;
         font-weight: 800;
@@ -187,6 +208,7 @@ main {
 .start-pause-btn {
     background-color: var(--tomato);
     border-radius: 5px;
+    width: 96px;
     padding: 10px 20px;
     font-size: 20px;
     color: white;
@@ -195,6 +217,11 @@ main {
     align-items: center;
     justify-content: center;
     box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+.start-pause-btn:hover {
+    background-color: red;
 }
 
 .clock-settings-btn {
@@ -303,7 +330,7 @@ main {
 }
 
 .completed-tasks-container {
-    margin-top: 20px;    
+    margin-top: 20px;
     background-color: var(--lightgreen);
     border-radius: 10px;
     padding: 15px;
@@ -339,6 +366,7 @@ main {
 
 .completed-tasks__description {
     display: flex;
+    gap: 15px;
     align-items: center;
     padding: 0 15px;
     box-shadow: var(--shadow);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-context="focus">
 
 <head>
     <meta charset="UTF-8">
@@ -23,17 +23,17 @@
             <div class="clock-container">
                 <div>
                     <ul class="context-list">
-                        <li class="context-item">
-                            <button class="btn-context active" data-context="focus">Focus</button>
+                        <li class="context-item" data-context="focus">
+                            <button class="btn-context active" >Focus</button>
                         </li>
-                        <li class="context-item">
-                            <button class="btn-context" data-context="short">Short Break</button>
+                        <li class="context-item" data-context="short">
+                            <button class="btn-context">Short Break</button>
                         </li>
-                        <li class="context-item">
-                            <button class="btn-context" data-context="long">Long Break</button>
+                        <li class="context-item" data-context="long">
+                            <button class="btn-context">Long Break</button>
                         </li>
                     </ul>
-                    <p class="clock">25:00</p>
+                    <p id="clock">25:00</p>
                     <div class="clock-buttons-container">
                         <div class="urgent-container">
                             <label class="urgent-container__text" for="urgent">Urgent</label>
@@ -114,6 +114,7 @@
         </div>
     </main>
 
+    <script src="main.js"></script>
 </body>
 
 </html>
