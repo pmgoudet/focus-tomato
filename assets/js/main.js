@@ -20,8 +20,10 @@ let ciclesBeforeLongBreak = 3;
 // TASKS
 const btnAddTask = document.querySelector('.task__add-task-btn');
 const taskDescription = document.querySelector('#new-task');
-const itemList = document.querySelector('.tasks-list')
+const itemList = document.querySelector('.tasks-list');
+const completedTaskList = document.querySelector('.completed-tasks__list');
 let tasks = [];
+let completedTasks = [];
 
 
 /********************************************/
@@ -119,20 +121,20 @@ startPauseBtn.addEventListener('click', startPauseTimer);
 
 function createTask(task) {
   let newTask = `                        
-    <button class="task__active-icon task-icon"></button>
+    <button class="task__active-icon task-icon" title="Defines the current task."></button>
     <div class="task__description">
-    <button class="task__description-icon"></button>
+    <button class="task__description-icon" title="Drag to reorder your tasks."></button>
     <p class="task__description-text">${task}</p>
     </div>
-    <button class="task__edit-icon task-icon"></button>
-    <button class="task__delete-icon task-icon"></button>
-    <button class="task__ready-icon task-icon"></button>
+    <button class="task__edit-icon task-icon" title="Edit this task."></button>
+    <button class="task__delete-icon task-icon" title="Delete this task."></button>
+    <button class="task__ready-icon task-icon" title="Task completed"></button>
   `;
   let li = document.createElement('li');
   li.classList.add('task');
   itemList.appendChild(li);
   li.innerHTML = newTask;
-  
+
   tasks.push(task);
   localStorage.setItem("taskItems", JSON.stringify(tasks));
 };
@@ -144,21 +146,37 @@ btnAddTask.addEventListener('click', () => {
   }
 });
 
-function getTasks() {
-  let taskItems = JSON.parse(localStorage.getItem("taskItems")) || [];
-  if (taskItems.length > 0) {
+function getTasks() { // get content from the localstorage as we load the page
+  let taskItems = JSON.parse(localStorage.getItem("taskItems"));
+  let completedTaskItems = JSON.parse(localStorage.getItem("completedTaskItems"));
+  if (taskItems) {
     taskItems.forEach((item) => {
       createTask(item);
     })
   }
+  if (completedTaskItems) {
+    completedTaskItems.forEach((item) => {
+      loadTask(item)
+    })
+  }
+  completedTasks = completedTaskItems;
+
+  //TODO deixar o primeiro item como "active" pra ficar vermelho
 };
 getTasks();
 
 
 // ALL TASKS EVENT LISTENER
 
+function activeTask(clickedBtn) {
+  let taskList = document.querySelectorAll('.task');
+  taskList.forEach((task) => {
+    task.classList.remove('active');
+  })
+  clickedBtn.parentElement.classList.add('active');
+}
+
 function deleteTask(clickedBtn) {
-  console.log(clickedBtn.parentElement);
   let delText = clickedBtn.parentElement.querySelector('.task__description-text').textContent;
   let index = tasks.indexOf(delText);
 
@@ -170,8 +188,53 @@ function deleteTask(clickedBtn) {
   clickedBtn.parentElement.remove();
 }
 
-function activeTask(clickedBtn) {
-  
+function readyTask(clickedBtn) {
+  let readyText = clickedBtn.parentElement.querySelector('.task__description-text').textContent;
+
+  let newCompletedTask = `   
+    <button class="completed-tasks__task__recover task-icon" title="Want to recover this task?">
+      <img src="assets/img/icons/recover-white-icon.svg" alt="Recover Task Icon">
+    </button>
+    <div class="completed-tasks__description">
+      <img class="completed-tasks__description__img"
+          src="assets/img/icons/check-green-icon.svg" alt="Checked Icon Item">
+      <p class="">${readyText}</p>
+    </div>
+    <button class="completed-tasks__task__delete-icon task-icon" title="Delete this task permanently?">
+      <img src="assets/img/icons/trash-green-icon.svg" alt="Delete Task Icon">
+    </button>
+  `;
+
+  let li = document.createElement('li');
+  li.classList.add('completed-tasks__task');
+  completedTaskList.appendChild(li);
+  li.innerHTML = newCompletedTask;
+
+  completedTasks.push(readyText);
+  localStorage.setItem("completedTaskItems", JSON.stringify(completedTasks));
+
+  deleteTask(clickedBtn);
+}
+
+function loadTask(item) {
+  let newCompletedTask = `   
+    <button class="completed-tasks__task__recover task-icon">
+      <img src="assets/img/icons/recover-white-icon.svg" alt="Recover Task Icon">
+    </button>
+    <div class="completed-tasks__description">
+      <img class="completed-tasks__description__img"
+          src="assets/img/icons/check-green-icon.svg" alt="Checked Icon Item">
+      <p class="">${item}</p>
+    </div>
+    <button class="completed-tasks__task__delete-icon task-icon">
+      <img src="assets/img/icons/trash-green-icon.svg" alt="Delete Task Icon">
+    </button>
+  `;
+
+  let li = document.createElement('li');
+  li.classList.add('completed-tasks__task');
+  completedTaskList.appendChild(li);
+  li.innerHTML = newCompletedTask;
 }
 
 
@@ -189,10 +252,10 @@ itemList.addEventListener('click', (event) => {
     const clickedBtn = event.target;
     deleteTask(clickedBtn);
   }
-  // if (event.target.classList.contains('task__ready-icon')) {
-  //   const clickedBtn = event.target;
-  //   readyTask(clickedBtn);
-  // }
+  if (event.target.classList.contains('task__ready-icon')) {
+    const clickedBtn = event.target;
+    readyTask(clickedBtn);
+  }
 });
 
 
@@ -209,5 +272,24 @@ itemList.addEventListener('click', (event) => {
       taskItem.remove(); // Remove o <li> do DOM
     }
   }
-}*/
+}
+  
+
+
+<li class="completed-tasks__task">
+    <button class="completed-tasks__task__recover task-icon">
+        <img src="assets/img/icons/recover-white-icon.svg" alt="Recover Task Icon">
+    </button>
+    <div class="completed-tasks__description">
+        <img class="completed-tasks__description__img"
+            src="assets/img/icons/check-green-icon.svg" alt="Checked Icon Item">
+        <p class="">Estudar algo</p>
+    </div>
+    <button class="completed-tasks__task__delete-icon task-icon">
+        <img src="assets/img/icons/trash-green-icon.svg" alt="Delete Task Icon">
+    </button>
+</li>
+
+
+*/
 

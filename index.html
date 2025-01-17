@@ -7,7 +7,7 @@
     <link rel="icon" type="image/x-icon" href="assets/img/icons/favicon.ico">
     <title>Focus Tomato</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/styles/style.css">
 </head>
 
 <body>
@@ -25,7 +25,7 @@
                 <div>
                     <ul class="context-list">
                         <li class="context-item" data-context="focus">
-                            <button class="btn-context active" >Focus</button>
+                            <button class="btn-context active">Focus</button>
                         </li>
                         <li class="context-item" data-context="short">
                             <button class="btn-context">Short Break</button>
@@ -62,7 +62,8 @@
                         New Task
                     </label>
                     <div class="add-task__input-btn-flex">
-                        <input type="text" id="new-task" placeholder="Write down the task you want to add..." maxlength="50">
+                        <input type="text" id="new-task" placeholder="Write down the task you want to add..."
+                            maxlength="50">
                         <button class="task__add-task-btn">Add <img src="assets/img/icons/add-green-icon.svg"
                                 alt="Add Task Icon"></button>
                     </div>
@@ -73,7 +74,7 @@
                             <button class="task__active-icon task-icon"></button>
                             <div class="task__description">
                                 <button class="task__description-icon"></button>
-                                    <p class="task__description-text">Ligar para o fornecedor</p>
+                                <p class="task__description-text">Ligar para o fornecedor</p>
                             </div>
                             <button class="task__edit-icon task-icon"></button>
                             <button class="task__delete-icon task-icon"></button>
@@ -84,7 +85,8 @@
                 <div class="completed-tasks-container">
                     <div class="completed-tasks__head">
                         <p class="completed-tasks__head__text">Completed</p>
-                        <button class="completed-tasks__head__btn">Clear <img src="assets/img/icons/trash-green-icon.svg" alt="Delete Tasks Icon"></button>
+                        <button class="completed-tasks__head__btn" title="Delete all tasks permanently?">Clear <img
+                                src="assets/img/icons/trash-green-icon.svg" alt="Delete Tasks Icon"></button>
                     </div>
                     <ul class="completed-tasks__list">
                         <li class="completed-tasks__task">
@@ -92,7 +94,8 @@
                                 <img src="assets/img/icons/recover-white-icon.svg" alt="Recover Task Icon">
                             </button>
                             <div class="completed-tasks__description">
-                                <img class="completed-tasks__description__img" src="assets/img/icons/check-green-icon.svg" alt="Checked Icon Item">
+                                <img class="completed-tasks__description__img"
+                                    src="assets/img/icons/check-green-icon.svg" alt="Checked Icon Item">
                                 <p class="">Estudar algo</p>
                             </div>
                             <button class="completed-tasks__task__delete-icon task-icon">
@@ -104,8 +107,8 @@
             </div>
         </div>
     </main>
- 
-    <script src="main.js"></script>
+
+    <script src="assets/js/main.js"></script>
 </body>
 
 </html>

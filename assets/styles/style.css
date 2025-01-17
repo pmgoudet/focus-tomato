@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Birthstone+Bounce:wght@400;500&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+
+@import url(clock.css);
+@import url(tasks.css);
+
+:root {
+    --lightred: #FBD1DA;
+    --tomato: #BF0E1E;
+    --lightgreen: #BDEAD7;
+    --lightgreen-hover: #7ac5a6;
+    --lightblue: #A4DCFF;
+    --ready-green: #008D00;
+    --darkgreen: #002A29;
+    --darkgreen-hover: #000b0b;
+    --shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: "Instrument Sans", serif;
+    color: var(--darkgreen);
+}
+
+[data-context="focus"] {
+    --bg-image: url(../img/bg-foco.png);
+    --bg-color: var(--lightred);
+}
+
+[data-context="short"] {
+    --bg-image: url(../img/bg-short.png);
+    --bg-color: var(--lightgreen);
+}
+
+[data-context="long"] {
+    --bg-image: url(../img/bg-long.png);
+    --bg-color: var(--lightblue);
+}
+
+body {
+    overflow-x: hidden;
+    height: calc(100vh - 50px);
+    width: 100vw;
+    background-color: var(--bg-color);
+    background-image: var(--bg-image);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: contain;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+input {
+    border: none;
+}
+
+.header-container {
+    width: 1200px;
+    margin: auto;
+}
+
+.logo {
+    margin: 50px 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-family: "Birthstone Bounce", serif;
+    color: var(--tomato);
+    font-size: 42px;
+    font-weight: 500;
+
+    img {
+        height: 50px;
+    }
+}
+
+main {
+    width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-container {
+    width: 35%;
+}
+
+.main-text {
+    font-size: 40px;
+    line-height: 60px;
+    font-weight: 400;
+    margin-bottom: 30px;
+
+    strong {
+        font-weight: 600;
+    }
+}
+
+.learn-more {
+    font-size: 25px;
+    color: var(--tomato);
+    text-decoration: none;
+
+}
+
+
+
+
+
+/* 
+
+Não esquecer de
+
+- dar para os quadradinhos de cada task uma classe só pra por tamanho e sombra
+- repensar a classe dos tasks completed
+
+-todos os hover
+
+- fazer aquele jeito de quando poe o mouse em cima ele explica o que o botao faz
+
+- se a altura é maior que 100vh a imagem de fundo nao faz mais sentido, tem que arrumar talvez com minheight 100vh e aí auto, sei lá
+
+*/

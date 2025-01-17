@@ -1,0 +1,140 @@
+.clock-container {
+    margin-top: 40px;
+    background-color: rgb(255, 255, 255, 0.5);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.context-list {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-context {
+    font-size: 20px;
+    font-weight: 400;
+    border-radius: 5px;
+    background-color: transparent;
+    padding: 5px 10px;
+    transition: 0.2s;
+}
+
+.btn-context:hover {
+    box-shadow: var(--shadow);
+}
+
+.context-item .active {
+    box-shadow: var(--shadow);
+}
+
+#clock {
+    font-size: 120px;
+    font-weight: 900;
+    text-align: center;
+    margin: 50px 0;
+}
+
+.clock-buttons-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.urgent-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+
+    .urgent-container__text {
+        font-size: 12px;
+        font-weight: 800;
+        cursor: pointer;
+    }
+
+    .toggle {
+        display: inline-block;
+        height: 1rem;
+        position: relative;
+        width: 2rem;
+    }
+
+    .toggle input {
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    .toggle input::before {
+        background-color: var(--darkgreen);
+        border-radius: 1rem;
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: background-color 0.25s ease-in-out;
+        width: 100%;
+    }
+
+    .toggle input:checked::before {
+        background-color: var(--tomato);
+    }
+
+    .toggle input::after {
+        background-color: #ffffff;
+        border-radius: 50%;
+        content: '';
+        height: 0.8rem;
+        left: 0.1rem;
+        position: absolute;
+        top: 0.1rem;
+        transition: transform 0.25s ease-in-out;
+        width: 0.8rem;
+    }
+
+    .toggle input:checked::after {
+        transform: translateX(1rem);
+    }
+}
+
+.start-pause-btn {
+    background-color: var(--tomato);
+    border-radius: 5px;
+    width: 96px;
+    padding: 10px 20px;
+    font-size: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow);
+    transition: 0.3s;
+}
+
+.start-pause-btn:hover {
+    background-color: red;
+}
+
+.clock-settings-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: var(--shadow);
+    font-size: 12px;
+    font-weight: 800;
+    background-color: transparent;
+
+    img {
+        height: 30px;
+    }
+}
