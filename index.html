@@ -62,7 +62,7 @@
                         New Task
                     </label>
                     <div class="add-task__input-btn-flex">
-                        <input type="text" id="new-task" placeholder="Write down the task you want to add...">
+                        <input type="text" id="new-task" placeholder="Write down the task you want to add..." maxlength="50">
                         <button class="task__add-task-btn">Add <img src="assets/img/icons/add-green-icon.svg"
                                 alt="Add Task Icon"></button>
                     </div>
@@ -70,24 +70,14 @@
                 <div class="tasks">
                     <ul class="tasks-list">
                         <li class="task active">
-                            <button class="task__active-icon task-icon">
-                                <img src="assets/img/icons/clock-red-icon.svg" alt="Active Task Icon">
-                            </button>
+                            <button class="task__active-icon task-icon"></button>
                             <div class="task__description">
-                                <button class="task__description-icon"><img src="assets/img/icons/drag-red-icon.svg"
-                                    alt="Drag Icon Item">
-                                </button>
+                                <button class="task__description-icon"></button>
                                     <p class="task__description-text">Ligar para o fornecedor</p>
                             </div>
-                            <button class="task__edit-icon task-icon">
-                                <img src="assets/img/icons/edit-red-icon.svg" alt="Edit Task Icon">
-                            </button>
-                            <button class="task__delete-icon task-icon">
-                                <img src="assets/img/icons/trash-red-icon.svg" alt="Delete Task Icon">
-                            </button>
-                            <button class="task__ready-icon task-icon">
-                                <img src="assets/img/icons/ready-red-icon.svg" alt="Ready Task Icon">
-                            </button>
+                            <button class="task__edit-icon task-icon"></button>
+                            <button class="task__delete-icon task-icon"></button>
+                            <button class="task__ready-icon task-icon"></button>
                         </li>
                     </ul>
                 </div>
@@ -114,7 +104,7 @@
             </div>
         </div>
     </main>
-
+ 
     <script src="main.js"></script>
 </body>
 
