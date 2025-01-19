@@ -9,6 +9,7 @@
     --lightgreen: #BDEAD7;
     --lightgreen-hover: #7ac5a6;
     --lightblue: #A4DCFF;
+    --blue: #1365BC;
     --ready-green: #008D00;
     --darkgreen: #002A29;
     --darkgreen-hover: #000b0b;
@@ -107,7 +108,30 @@ main {
 
 }
 
+footer {
+    position: relative;
+    bottom: -22px;
+    margin-top: 40px;
+}
 
+.footer-container {
+    background-color: var(--tomato);
+    margin: auto;
+    width: 250px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+
+    p {
+        color: white;
+        font-size: 12px;
+        a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    }
+}
 
 
 

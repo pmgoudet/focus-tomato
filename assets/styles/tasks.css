@@ -128,6 +128,14 @@
     color: white;
 }
 
+.input-edit {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    border-radius: 2px;
+    padding: 5px;
+}
+
 .active .task__edit-icon:hover,
 .task__edit-icon {
     background: url(../img/icons/edit-red-icon.svg) center no-repeat;
@@ -171,6 +179,7 @@
 }
 
 .completed-tasks-container {
+    display: none;
     margin-top: 20px;
     background-color: var(--lightgreen);
     border-radius: 10px;
@@ -203,6 +212,7 @@
 }
 
 .completed-tasks__task__recover {
+    background: url(../img/icons/recover-white-icon.svg) center no-repeat;
     background-color: var(--darkgreen);
     width: 68px;
 }
@@ -226,6 +236,7 @@
 }
 
 .completed-tasks__task__delete-icon {
+    background: url(../img/icons/trash-green-icon.svg) center no-repeat;
     background-color: transparent;
     width: 68px;
 }

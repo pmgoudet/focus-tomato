@@ -1,4 +1,5 @@
 //! SECURITY // <script type="text/javascript" src="src/purify.js"></script>
+let log = console.log;
 
 // CHANGE CONTEXT
 const html = document.querySelector('html');
@@ -21,7 +22,9 @@ let ciclesBeforeLongBreak = 3;
 const btnAddTask = document.querySelector('.task__add-task-btn');
 const taskDescription = document.querySelector('#new-task');
 const itemList = document.querySelector('.tasks-list');
+const completedTaskContainer = document.querySelector('.completed-tasks-container');
 const completedTaskList = document.querySelector('.completed-tasks__list');
+const clearBtn = document.querySelector('.completed-tasks__head__btn');
 let tasks = [];
 let completedTasks = [];
 
@@ -93,7 +96,7 @@ function startPauseTimer() {
             });
           }
         } else {
-          // AQUI O BOTÃO PRA LONG BREAK
+          //TODO AQUI O BOTÃO PRA LONG BREAK
         }
       }
     }, 1000);
@@ -116,8 +119,28 @@ startPauseBtn.addEventListener('click', startPauseTimer);
 // ---------------- TASKS --------------------
 /********************************************/
 
-
 // CREATE TASK
+
+function getTasks() { // get content from the localstorage as we load the page
+  let taskItems = JSON.parse(localStorage.getItem("taskItems"));
+  let completedTaskItems = JSON.parse(localStorage.getItem("completedTaskItems"));
+  if (taskItems) {
+    taskItems.forEach((item) => {
+      createTask(item);
+    })
+  }
+  if (completedTaskItems != null) {
+    completedTaskItems.forEach((item) => {
+      loadTask(item)
+      completedTasks = completedTaskItems;
+    })
+    showCompletedTasks()
+  }
+  if (itemList.children.length > 0) {
+    itemList.children[0].classList.add('active');
+  }
+};
+getTasks();
 
 function createTask(task) {
   let newTask = `                        
@@ -139,34 +162,22 @@ function createTask(task) {
   localStorage.setItem("taskItems", JSON.stringify(tasks));
 };
 
-btnAddTask.addEventListener('click', () => {
-  if (taskDescription.value != "") {
-    createTask(taskDescription.value);
-    taskDescription.value = "";
-  }
-});
+function loadTask(item) {
+  let newCompletedTask = `
+    <button class="completed-tasks__task__recover task-icon" title="Want to recover this task?"></button>
+    <div class="completed-tasks__description">
+      <img class="completed-tasks__description__img"
+          src="assets/img/icons/check-green-icon.svg" alt="Checked Icon Item">
+      <p class="completed-tasks__description__txt">${item}</p>
+    </div>
+    <button class="completed-tasks__task__delete-icon task-icon" title="Delete this task permanently?"></button>
+  `;
 
-function getTasks() { // get content from the localstorage as we load the page
-  let taskItems = JSON.parse(localStorage.getItem("taskItems"));
-  let completedTaskItems = JSON.parse(localStorage.getItem("completedTaskItems"));
-  if (taskItems) {
-    taskItems.forEach((item) => {
-      createTask(item);
-    })
-  }
-  if (completedTaskItems) {
-    completedTaskItems.forEach((item) => {
-      loadTask(item)
-    })
-  }
-  completedTasks = completedTaskItems;
-
-  //TODO deixar o primeiro item como "active" pra ficar vermelho
-};
-getTasks();
-
-
-// ALL TASKS EVENT LISTENER
+  let li = document.createElement('li');
+  li.classList.add('completed-tasks__task');
+  completedTaskList.appendChild(li);
+  li.innerHTML = newCompletedTask;
+}
 
 function activeTask(clickedBtn) {
   let taskList = document.querySelectorAll('.task');
@@ -174,6 +185,31 @@ function activeTask(clickedBtn) {
     task.classList.remove('active');
   })
   clickedBtn.parentElement.classList.add('active');
+}
+
+function editTask(clickedBtn) {
+  const taskDescrip = clickedBtn.parentElement.querySelector('.task__description-text');
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.setAttribute('maxlength', '50');
+  input.classList.add('input-edit');
+  input.value = taskDescrip.textContent;
+  taskDescrip.replaceWith(input);
+  input.focus();
+  let index = tasks.indexOf(taskDescrip.textContent);
+
+  input.addEventListener('blur', () => {
+    const newTaskDescrip = document.createElement('p');
+    newTaskDescrip.className = 'task__description-text';
+    if (input.value == "") {
+      input.replaceWith(taskDescrip.textContent);
+    } else {
+      newTaskDescrip.textContent = input.value;
+      input.replaceWith(newTaskDescrip);
+      tasks[index] = newTaskDescrip.textContent;
+      localStorage.setItem("taskItems", JSON.stringify(tasks));
+    }
+  });
 }
 
 function deleteTask(clickedBtn) {
@@ -192,17 +228,13 @@ function readyTask(clickedBtn) {
   let readyText = clickedBtn.parentElement.querySelector('.task__description-text').textContent;
 
   let newCompletedTask = `   
-    <button class="completed-tasks__task__recover task-icon" title="Want to recover this task?">
-      <img src="assets/img/icons/recover-white-icon.svg" alt="Recover Task Icon">
-    </button>
+    <button class="completed-tasks__task__recover task-icon" title="Want to recover this task?"></button>
     <div class="completed-tasks__description">
       <img class="completed-tasks__description__img"
           src="assets/img/icons/check-green-icon.svg" alt="Checked Icon Item">
-      <p class="">${readyText}</p>
+      <p class="completed-tasks__description__txt">${readyText}</p>
     </div>
-    <button class="completed-tasks__task__delete-icon task-icon" title="Delete this task permanently?">
-      <img src="assets/img/icons/trash-green-icon.svg" alt="Delete Task Icon">
-    </button>
+    <button class="completed-tasks__task__delete-icon task-icon" title="Delete this task permanently?"></button>
   `;
 
   let li = document.createElement('li');
@@ -212,42 +244,29 @@ function readyTask(clickedBtn) {
 
   completedTasks.push(readyText);
   localStorage.setItem("completedTaskItems", JSON.stringify(completedTasks));
-
   deleteTask(clickedBtn);
+  showCompletedTasks()
 }
 
-function loadTask(item) {
-  let newCompletedTask = `   
-    <button class="completed-tasks__task__recover task-icon">
-      <img src="assets/img/icons/recover-white-icon.svg" alt="Recover Task Icon">
-    </button>
-    <div class="completed-tasks__description">
-      <img class="completed-tasks__description__img"
-          src="assets/img/icons/check-green-icon.svg" alt="Checked Icon Item">
-      <p class="">${item}</p>
-    </div>
-    <button class="completed-tasks__task__delete-icon task-icon">
-      <img src="assets/img/icons/trash-green-icon.svg" alt="Delete Task Icon">
-    </button>
-  `;
-
-  let li = document.createElement('li');
-  li.classList.add('completed-tasks__task');
-  completedTaskList.appendChild(li);
-  li.innerHTML = newCompletedTask;
-}
+btnAddTask.addEventListener('click', () => {
+  if (taskDescription.value != "") {
+    createTask(taskDescription.value);
+    taskDescription.value = "";
+  }
+});
 
 
+// ALL TASKS EVENT LISTENER
 
 itemList.addEventListener('click', (event) => {
   if (event.target.classList.contains('task__active-icon')) {
     const clickedBtn = event.target;
     activeTask(clickedBtn);
   }
-  // if (event.target.classList.contains('task__edit-icon')) {
-  //   const clickedBtn = event.target;
-  //   editTask(clickedBtn);
-  // }
+  if (event.target.classList.contains('task__edit-icon')) {
+    const clickedBtn = event.target;
+    editTask(clickedBtn);
+  }
   if (event.target.classList.contains('task__delete-icon')) {
     const clickedBtn = event.target;
     deleteTask(clickedBtn);
@@ -259,37 +278,48 @@ itemList.addEventListener('click', (event) => {
 });
 
 
+//todo drag and drop
 
 
+// COMPLETED TASKS
 
-
-/*function deleteTask(event) {
-  // Verifica se o clique foi em um botão com a classe 'task__delete-icon'
-  if (event.target.classList.contains('task__delete-icon')) {
-    // Encontra o <li> que contém o botão clicado
-    const taskItem = event.target.closest('li');
-    if (taskItem) {
-      taskItem.remove(); // Remove o <li> do DOM
-    }
+function showCompletedTasks() {
+  if (completedTaskList.children.length > 0) {
+    completedTaskContainer.style.display = "block";
+  } else {
+    completedTaskContainer.style.display = "none";
   }
 }
-  
+showCompletedTasks()
 
+function deleteCompletedTasks(task) {
+  task.parentElement.remove()
+  let taskDescrip = task.parentElement.querySelector('.completed-tasks__description__txt').textContent;
+  index = completedTasks.indexOf(taskDescrip);
+  if (index !== -1) { // if index doesn't exist it returns -1
+    completedTasks.splice(index, 1);
+  }
+  localStorage.setItem("completedTaskItems", JSON.stringify(completedTasks));
+  showCompletedTasks()
+}
 
-<li class="completed-tasks__task">
-    <button class="completed-tasks__task__recover task-icon">
-        <img src="assets/img/icons/recover-white-icon.svg" alt="Recover Task Icon">
-    </button>
-    <div class="completed-tasks__description">
-        <img class="completed-tasks__description__img"
-            src="assets/img/icons/check-green-icon.svg" alt="Checked Icon Item">
-        <p class="">Estudar algo</p>
-    </div>
-    <button class="completed-tasks__task__delete-icon task-icon">
-        <img src="assets/img/icons/trash-green-icon.svg" alt="Delete Task Icon">
-    </button>
-</li>
+clearBtn.addEventListener('click', () => {
+  const confirmed = confirm("Are you sure you want to delete all the completed tasks permanently?");
+  if (confirmed) {
+    completedTaskList.innerHTML = "";
+    completedTasks = [];
+    localStorage.removeItem("completedTaskItems");
+    showCompletedTasks()
+  };
+})
 
-
-*/
-
+completedTaskList.addEventListener('click', (event) => {
+  if (event.target.classList.contains('completed-tasks__task__recover')) {
+    let taskDescrip = event.target.parentElement.querySelector('.completed-tasks__description__txt').textContent;
+    createTask(taskDescrip);
+    deleteCompletedTasks(event.target);
+  }
+  if (event.target.classList.contains('completed-tasks__task__delete-icon')) {
+    deleteCompletedTasks(event.target)
+  }
+});
