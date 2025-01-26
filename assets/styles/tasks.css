@@ -99,7 +99,7 @@
     transition: 0.3s;
 }
 
-.task > .task-icon:hover {
+.task > .task-icon:not(.task__ready-icon):hover {
     background-color: var(--tomato);
 }
 
@@ -164,7 +164,6 @@
     background: url(../img/icons/trash-lightred-icon.svg) center no-repeat;
 }
 
-.active .task__ready-icon:hover,
 .task__ready-icon {
     background: url(../img/icons/ready-red-icon.svg) center no-repeat;
     background-color: var(--lightred);
@@ -174,8 +173,10 @@
     background: url(../img/icons/ready-lightred-icon.svg) center no-repeat;
 }
 
+.active .task__ready-icon:hover,
 .task__ready-icon:hover {
     background: url(../img/icons/ready-lightred-icon.svg) center no-repeat;
+    background-color: var(--darkgreen);
 }
 
 .completed-tasks-container {

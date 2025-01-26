@@ -1,13 +1,258 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tooltip Padrão</title>
+
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .settings_overlay {
+            margin: 30px;
+
+            width: 400px;
+            height: 375px;
+            padding: 15px;
+            border-radius: 20px;
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-settings {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form-settings__title {
+            font-size: 30px;
+            text-align: center;
+            color: green;
+        }
+
+        .form-settings__line {
+            background-color: rgba(255, 255, 255, 0);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 15px;
+            box-shadow: 1px 1px 1px black;
+        }
+
+        .form-settings__time__title {
+            font-size: 18px;
+            color: green;
+            margin-bottom: 10px;
+        }
+
+        .form-settings input {
+            width: 30px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .form-settings__time-group {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .form-settings__line-cycles {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .form-settings__line-autostart {
+            text-align: center;
+
+            .toggle-autostart {
+                display: inline-block;
+                height: 1.25rem;
+                position: relative;
+                width: 2.25rem;
+            }
+
+            .toggle-autostart input {
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+
+            .toggle-autostart input::before {
+                background-color: black;
+                border-radius: 1rem;
+                content: '';
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                transition: background-color 0.25s ease-in-out;
+                width: 100%;
+            }
+
+            .toggle-autostart input:checked::before {
+                background-color: blue;
+            }
+
+            .toggle-autostart input::after {
+                background-color: #7f1414;
+                border-radius: 50%;
+                content: '';
+                height: 1rem;
+                left: 0.1rem;
+                position: absolute;
+                top: 0.1rem;
+                transition: transform 0.25s ease-in-out;
+                width: 1rem;
+                            }
+
+            .toggle-autostart input:checked::after {
+                transform: translateX(1rem);
+            }
+        }
+
+        .form-settings__line-autostart__flex {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .form-buttons__btn {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 1px 1px 1px black;
+            font-size: 18px;
+            color: white;
+        }
+
+        .btn-cancel {
+            background-color: green;
+        }
+
+        .btn-save {
+            background-color: red;
+            font-weight: 600;
+        }
+
+        /* .urgent-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+
+            .urgent-container__text {
+                font-size: 12px;
+                font-weight: 800;
+                cursor: pointer;
+            }
+
+            .toggle {
+                display: inline-block;
+                height: 1rem;
+                position: relative;
+                width: 2rem;
+            }
+
+            .toggle input {
+                cursor: pointer;
+                height: 0;
+                width: 0;
+            }
+
+            .toggle input::before {
+                background-color: var(--darkgreen);
+                border-radius: 1rem;
+                content: '';
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                transition: background-color 0.25s ease-in-out;
+                width: 100%;
+            }
+
+            .toggle input:checked::before {
+                background-color: var(--tomato);
+            }
+
+            .toggle input::after {
+                background-color: #ffffff;
+                border-radius: 50%;
+                content: '';
+                height: 0.8rem;
+                left: 0.1rem;
+                position: absolute;
+                top: 0.1rem;
+                transition: transform 0.25s ease-in-out;
+                width: 0.8rem;
+            }
+
+            .toggle input:checked::after {
+                transform: translateX(1rem);
+            }
+        } */
+    </style>
+
+
 </head>
+
 <body>
-    <button title="Este botão realiza uma ação específica.">
-        Clique Aqui
-    </button>
+    <div class="settings_overlay">
+        <form class="form-settings">
+            <h2 class="form-settings__title">Setting</h2>
+            <div class="form-settings__line">
+                <h4 class="form-settings__time__title">Time (minutes)</h4>
+                <div class="form-settings__time-group">
+                    <div>
+                        <label for="focus-time">Focus</label>
+                        <input type="number" id="focus-time" name="focus-time" step="1" min="0" value="25" required>
+                    </div>
+                    <div>
+                        <label for="short-break">Short Break</label>
+                        <input type="number" id="short-break" name="short-break" step="1" min="0" value="5" required>
+                    </div>
+                    <div>
+                        <label for="long-break">Long Break</label>
+                        <input type="number" id="long-break" name="long-break" step="1" min="0" value="15" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-settings__line form-settings__line-cycles">
+                <label for="cycle-count">Count of Cycles Between Long Breaks:</label>
+                <input type="number" id="cycle-count" name="cycle-count" step="1" min="0" value="3" required>
+            </div>
+            <div class="form-settings__line form-settings__line-autostart">
+                <label class="form-settings__line-autostart__flex" for="autostart">
+                    <p>Autostart Timer</p>
+                    <div class="toggle-autostart">
+                        <input type="checkbox" id="autostart" name="autostart">
+                    </div>
+                </label>
+            </div>
+            <div class="form-buttons">
+                <button class="form-buttons__btn btn-cancel" type="reset" class="cancel">Cancel</button>
+                <button class="form-buttons__btn btn-save" type="submit" class="save">Save</button>
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>
