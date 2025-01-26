@@ -138,3 +138,22 @@
         height: 30px;
     }
 }
+
+
+
+@media (max-width: 768px) {
+
+    .clock-container {
+        margin-top: 30px;
+    }
+
+    .btn-context {
+        font-size: 4vw;
+    }
+    
+    #clock {
+        font-size: 25vw;
+        margin: 45px 0;
+    }
+    
+}

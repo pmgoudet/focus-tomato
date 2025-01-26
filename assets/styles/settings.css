@@ -23,11 +23,11 @@
 }
 
 .form-settings__line {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.0);
     padding: 15px;
     border-radius: 10px;
     font-size: 15px;
-    box-shadow: var(--shadow);
+    border-bottom: 1px solid gray;
 }
 
 .form-settings__time__title {
@@ -138,3 +138,51 @@
     background-color: var(--tomato);
     font-weight: 500;
 }
+
+
+@media (max-width: 768px) {
+
+    .settings_overlay {
+        width: 92%;
+        height: 318px;
+        top: -350px;
+    }
+
+    .form-settings {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-settings__title {
+        font-size: 25px;
+        text-align: center;
+        color: var(--darkgreen);
+    }
+
+    .form-settings__line {
+        padding-bottom: 10px;
+    }
+
+    .form-settings__time__title {
+        margin-bottom: 3px;
+    }
+
+    .form-settings__time-group {    
+        label {
+            font-size: 15px;
+            margin-right: 3px;
+        }
+    }
+
+    .form-settings__line-autostart__flex {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .form-buttons__btn {
+        font-size: 15px;
+    }
+
+}
+

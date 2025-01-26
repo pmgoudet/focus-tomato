@@ -245,3 +245,13 @@
 .completed-tasks__task__delete-icon:hover {
     background-color: var(--lightgreen-hover);
 }
+
+
+@media (max-width: 768px) {
+
+    .tasks-container-flex {
+        margin-top: 30px;
+        width: 100%;
+    }
+
+}

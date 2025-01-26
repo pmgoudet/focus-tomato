@@ -41,9 +41,10 @@
     --bg-color: var(--lightblue);
 }
 
-body, html {
+body,
+html {
     overflow-x: hidden;
-    height: calc(100vh);
+    height: 100vh;
     width: 100vw;
 }
 
@@ -130,6 +131,7 @@ footer {
     p {
         color: white;
         font-size: 12px;
+
         a {
             color: white;
             text-decoration: none;
@@ -139,18 +141,45 @@ footer {
 }
 
 
+@media (max-width: 768px) {
 
-/* 
+    body {
+        margin: 30px;
+        height: auto;
+        width: auto;
+    }
 
-Não esquecer de
+    .header-container {
+        width: auto;
+        margin: auto;
+    }
 
-- dar para os quadradinhos de cada task uma classe só pra por tamanho e sombra
-- repensar a classe dos tasks completed
+    .logo {
+        margin: 30px 0;
+    }
 
--todos os hover
+    main {
+        width: auto;
+        flex-direction: column;
+    }
 
-- fazer aquele jeito de quando poe o mouse em cima ele explica o que o botao faz
+    .info-container {
+        width: 99.5%;
+    }
 
-- se a altura é maior que 100vh a imagem de fundo nao faz mais sentido, tem que arrumar talvez com minheight 100vh e aí auto, sei lá
+    .main-text {
+        font-size: 20px;
+        line-height: 30px;
+        margin-bottom: 5px;
+        width: 100%;
+    }
 
-*/
+    .learn-more {
+        font-size: 15px;
+    }
+
+    footer {
+        display: none;
+    }
+
+}
