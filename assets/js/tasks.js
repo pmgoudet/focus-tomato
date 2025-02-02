@@ -259,3 +259,29 @@ function getTasks() { // get content from the localstorage as we load the page
     }
   });
   
+
+  // RESPONSIVE TASK
+
+//   document.addEventListener("DOMContentLoaded", function () {
+//     document.querySelectorAll(".task__menu-icon").forEach(menuIcon => {
+//         menuIcon.addEventListener("click", function (event) {
+//             event.stopPropagation(); // Evita fechar imediatamente ao clicar no botão
+//             let menu = this.nextElementSibling;
+//             menu.style.display = menu.style.display === "block" ? "none" : "block";
+//         });
+//     });
+
+//     // Fecha o menu ao clicar fora
+//     document.addEventListener("click", function () {
+//         document.querySelectorAll(".task__menu").forEach(menu => {
+//             menu.style.display = "none";
+//         });
+//     });
+
+//     // Impede que um clique no menu o feche imediatamente
+//     document.querySelectorAll(".task__menu").forEach(menu => {
+//         menu.addEventListener("click", event => event.stopPropagation());
+//     });
+// });
+
+
