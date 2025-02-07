@@ -40,7 +40,7 @@ function updateDisplay() {
   display.textContent = formatTime(timer);
 }
 
-function countdown() {
+function countdown(callback) {
   if (isPaused) {
     // Start timer
     isPaused = false;
@@ -51,20 +51,20 @@ function countdown() {
         timer--;
         updateDisplay();
       } else {
-        if (urgent.checked) {
-          endAudio.loop = true;
-        } else {
-          endAudio.loop = false;
-        }
+        clearInterval(interval);
+        startPauseBtn.textContent = `Good!`;
+
+        endAudio.loop = urgent.checked;
         endAudio.play();
+
         document.addEventListener("click", () => {
           if (!endAudio.paused) {
             endAudio.pause();
             endAudio.currentTime = 0;
           }
         });
-        clearInterval(interval);
-        startPauseBtn.textContent = `Good!`;
+
+        if (callback) callback(); // Execute next step
       }
     }, 1000);
   } else {
@@ -91,13 +91,47 @@ function changeTheme() {
 }
 
 function autostartOn() {
-  const cycleCount = document.querySelector("#cycle-count").value;
-  for (let i = 0; i < cycleCount.length; i++) {}
+  const cycleCount = parseInt(document.querySelector("#cycle-count").value, 10);
+
+  let currentCycle = 0;
+
+  function startNextCycle() {
+    if (currentCycle < cycleCount) {
+      countdown(() => {
+        // CHANGE THEME after counting starts
+        const btnContext = document.querySelectorAll(".btn-context");
+        contextItems.forEach((item) => {
+          item.querySelector("button").classList.remove("active");
+        });
+        html.setAttribute("data-context", "short");
+        btnContext[1].classList.add("active");
+        startPauseBtn.innerHTML = `Start <img src="assets/img/icons/play-icon.svg" alt="Play Icon">`;
+        isPaused = true;
+        display.textContent = `${shortTime.value}:00`;
+        timer = shortTime.value * 60;
+
+        currentCycle++;
+        startNextCycle(); // Start next cycle
+
+        // contextItems.forEach((item) => {
+        //   item.querySelector("button").classList.remove("active");
+        // });
+        // html.setAttribute("data-context", "short");
+        // btnContext[0].classList.add("active");
+        // startPauseBtn.innerHTML = `Start <img src="assets/img/icons/play-icon.svg" alt="Play Icon">`;
+        // isPaused = true;
+        // display.textContent = `${focusTime.value}:00`;
+        // timer = focusTime.value * 60;
+      });
+    }
+  }
+
+  startNextCycle(); // Start first cycle
 }
 
 function startPauseTimer() {
-  //TODO isso aqui tudo ////////////////////////////////
   const autoStart = document.querySelector("#autostart");
+
   if (!autoStart.checked) {
     countdown();
   } else {
