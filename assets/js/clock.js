@@ -21,6 +21,8 @@ const cancelBtn = document.querySelector(".btn-cancel");
 const focusTime = document.querySelector("#focus-time");
 const shortTime = document.querySelector("#short-break");
 const longTime = document.querySelector("#long-break");
+const inputValue = document.querySelectorAll(".input-settings");
+let inputMemory = 0;
 
 function formatTime(seconds) {
   // time format
@@ -113,10 +115,10 @@ function autostartOn() {
         isPaused = true;
         if (currentCycle % 2 === 0 ? 1 : 0) {
           display.textContent = `${shortTime.value}:00`;
-          timer = shortTime.value * 2; //!60 AQUI
+          timer = shortTime.value * 60;
         } else {
           display.textContent = `${focusTime.value}:00`;
-          timer = focusTime.value * 2; //!60 AQUI
+          timer = focusTime.value * 60;
         }
 
         currentCycle++;
@@ -159,6 +161,19 @@ settingsBtn.addEventListener("click", () => {
   settingsContainer.style.display = "block";
 });
 
+inputValue.forEach((input) => {
+  input.addEventListener("focus", () => {
+    inputMemory = input.value;
+    input.value = "";
+  });
+
+  input.addEventListener("blur", () => {
+    if (input.value == "") {
+      input.value = inputMemory;
+    }
+  });
+});
+
 saveBtn.addEventListener("click", (e) => {
   e.preventDefault();
   clockContainer.style.opacity = "1";
@@ -166,7 +181,7 @@ saveBtn.addEventListener("click", (e) => {
   if (html.dataset.context == "focus") {
     // display clock
     display.textContent = `${focusTime.value}:00`;
-    timer = focusTime.value * 4; //! 60 AQUI
+    timer = focusTime.value * 60;
   } else if (html.dataset.context == "short") {
     display.textContent = `${shortTime.value}:00`;
     timer = shortTime.value * 60;

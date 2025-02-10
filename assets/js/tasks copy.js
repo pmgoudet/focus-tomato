@@ -91,11 +91,11 @@ function activeTask(clickedBtn) {
   taskList.forEach((task) => {
     task.classList.remove("active");
   });
-  clickedBtn.parentElement.parentElement.classList.add("active");
+  clickedBtn.parentElement.classList.add("active");
 }
 
 function editTask(clickedBtn) {
-  const taskDescrip = clickedBtn.parentElement.parentElement.querySelector(
+  const taskDescrip = clickedBtn.parentElement.querySelector(
     ".task__description-text"
   );
   const input = document.createElement("input");
@@ -122,9 +122,9 @@ function editTask(clickedBtn) {
 }
 
 function deleteTask(clickedBtn) {
-  let delText = clickedBtn.parentElement.parentElement.querySelector(
+  let delText = clickedBtn.parentElement.querySelector(
     ".task__description-text"
-  ).textContent; //!FAZER AQUELE ROLE PRA EVITAR PARENTELEMENT 2X
+  ).textContent;
   let index = tasks.indexOf(delText);
 
   if (index !== -1) {
@@ -137,7 +137,7 @@ function deleteTask(clickedBtn) {
 }
 
 function readyTask(clickedBtn) {
-  let readyText = clickedBtn.parentElement.parentElement.querySelector(
+  let readyText = clickedBtn.parentElement.querySelector(
     ".task__description-text"
   ).textContent;
 
