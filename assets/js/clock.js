@@ -40,7 +40,7 @@ function updateDisplay() {
   display.textContent = formatTime(timer);
 }
 
-function countdown() {
+function countdown(callback) {
   if (isPaused) {
     // Start timer
     isPaused = false;
@@ -51,20 +51,20 @@ function countdown() {
         timer--;
         updateDisplay();
       } else {
-        if (urgent.checked) {
-          endAudio.loop = true;
-        } else {
-          endAudio.loop = false;
-        }
+        clearInterval(interval);
+        startPauseBtn.textContent = `Good!`;
+
+        endAudio.loop = urgent.checked;
         endAudio.play();
+
         document.addEventListener("click", () => {
           if (!endAudio.paused) {
             endAudio.pause();
             endAudio.currentTime = 0;
           }
         });
-        clearInterval(interval);
-        startPauseBtn.textContent = `Good!`;
+
+        if (callback) callback(); // Execute next step
       }
     }, 1000);
   } else {
@@ -91,13 +91,55 @@ function changeTheme() {
 }
 
 function autostartOn() {
-  const cycleCount = document.querySelector("#cycle-count").value;
-  for (let i = 0; i < cycleCount.length; i++) {}
+  const cycleCount = parseInt(document.querySelector("#cycle-count").value, 10);
+
+  let currentCycle = 0;
+
+  function startNextCycle() {
+    if (currentCycle + 1 <= cycleCount * 2 - 1) {
+      countdown(() => {
+        // CHANGE THEME after counting ends
+        const btnContext = document.querySelectorAll(".btn-context");
+        let context = ["focus", "short", "long"];
+        contextItems.forEach((item) => {
+          item.querySelector("button").classList.remove("active");
+        });
+        html.setAttribute(
+          "data-context",
+          context[currentCycle % 2 === 0 ? 1 : 0]
+        );
+        btnContext[currentCycle % 2 === 0 ? 1 : 0].classList.add("active");
+        startPauseBtn.innerHTML = `Start <img src="assets/img/icons/play-icon.svg" alt="Play Icon">`;
+        isPaused = true;
+        if (currentCycle % 2 === 0 ? 1 : 0) {
+          display.textContent = `${shortTime.value}:00`;
+          timer = shortTime.value * 2; //!60 AQUI
+        } else {
+          display.textContent = `${focusTime.value}:00`;
+          timer = focusTime.value * 2; //!60 AQUI
+        }
+
+        currentCycle++;
+        startNextCycle();
+      });
+    } else {
+      const btnContext = document.querySelectorAll(".btn-context");
+      contextItems.forEach((item) => {
+        item.querySelector("button").classList.remove("active");
+      });
+      html.setAttribute("data-context", "long");
+      btnContext[2].classList.add("active");
+      startPauseBtn.innerHTML = `Start <img src="assets/img/icons/play-icon.svg" alt="Play Icon">`;
+      countdown();
+    }
+  }
+
+  startNextCycle(); // Start first cycle
 }
 
 function startPauseTimer() {
-  //TODO isso aqui tudo ////////////////////////////////
   const autoStart = document.querySelector("#autostart");
+
   if (!autoStart.checked) {
     countdown();
   } else {
@@ -124,7 +166,7 @@ saveBtn.addEventListener("click", (e) => {
   if (html.dataset.context == "focus") {
     // display clock
     display.textContent = `${focusTime.value}:00`;
-    timer = focusTime.value * 60;
+    timer = focusTime.value * 4; //! 60 AQUI
   } else if (html.dataset.context == "short") {
     display.textContent = `${shortTime.value}:00`;
     timer = shortTime.value * 60;

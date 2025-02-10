@@ -1,188 +1,184 @@
 .settings_overlay {
-    width: 400px;
-    height: 375px;
-    padding: 15px;
-    border-radius: 20px;
-    position: relative;
-    top: -395px;
-    background-color: var(--lightgreen);
-    box-shadow: var(--shadow);
-    display: none;
+  width: 400px;
+  height: 375px;
+  padding: 15px;
+  border-radius: 20px;
+  position: relative;
+  top: -395px;
+  background-color: var(--lightgreen);
+  box-shadow: var(--shadow);
+  display: none;
 }
 
 .form-settings {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .form-settings__title {
-    font-size: 30px;
-    text-align: center;
-    color: var(--darkgreen);
+  font-size: 30px;
+  text-align: center;
+  color: var(--darkgreen);
 }
 
 .form-settings__line {
-    background-color: rgba(255, 255, 255, 0.0);
-    padding: 15px;
-    border-radius: 10px;
-    font-size: 15px;
-    border-bottom: 1px solid gray;
+  background-color: rgba(255, 255, 255, 0);
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 15px;
+  border-bottom: 1px solid gray;
 }
 
 .form-settings__time__title {
-    font-size: 18px;
-    color: var(--darkgreen);
-    margin-bottom: 10px;
+  font-size: 18px;
+  color: var(--darkgreen);
+  margin-bottom: 10px;
 }
 
 .form-settings input {
-    width: 33px;
-    padding: 5px;
-    border-radius: 5px;
-    box-shadow: var(--shadow);
+  width: 33px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: var(--shadow);
 }
 
 .form-settings__time-group {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 
-    label {
-        margin-right: 5px;
-    }
+  label {
+    margin-right: 5px;
+  }
 }
 
 .form-settings__line-cycles {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
 }
 
 .form-settings__line-autostart {
-    text-align: center;
+  text-align: center;
 
-    .toggle-autostart {
-        display: inline-block;
-        height: 1.25rem;
-        position: relative;
-        width: 2.25rem;
-    }
+  .toggle-autostart {
+    display: inline-block;
+    height: 1.25rem;
+    position: relative;
+    width: 2.25rem;
+  }
 
-    .toggle-autostart input {
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
+  .toggle-autostart input {
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
 
-    .toggle-autostart input::before {
-        background-color: var(--darkgreen);
-        border-radius: 1rem;
-        content: '';
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
-        transition: background-color 0.25s ease-in-out;
-        width: 100%;
-    }
+  .toggle-autostart input::before {
+    background-color: var(--darkgreen);
+    border-radius: 1rem;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: background-color 0.25s ease-in-out;
+    width: 100%;
+  }
 
-    .toggle-autostart input:checked::before {
-        background-color: var(--tomato);
-    }
+  .toggle-autostart input:checked::before {
+    background-color: var(--tomato);
+  }
 
-    .toggle-autostart input::after {
-        background-color: #ffffff;
-        border-radius: 50%;
-        content: '';
-        height: 1rem;
-        left: 0.1rem;
-        position: absolute;
-        top: 0.1rem;
-        transition: transform 0.25s ease-in-out;
-        width: 1rem;
-    }
+  .toggle-autostart input::after {
+    background-color: #ffffff;
+    border-radius: 50%;
+    content: "";
+    height: 1rem;
+    left: 0.1rem;
+    position: absolute;
+    top: 0.1rem;
+    transition: transform 0.25s ease-in-out;
+    width: 1rem;
+  }
 
-    .toggle-autostart input:checked::after {
-        transform: translateX(1rem);
-    }
+  .toggle-autostart input:checked::after {
+    transform: translateX(1rem);
+  }
 }
 
 .form-settings__line-autostart__flex {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
 
 .form-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
 .form-buttons__btn {
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    box-shadow: var(--shadow);
-    font-size: 18px;
-    color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: var(--shadow);
+  font-size: 18px;
+  color: white;
 }
 
 .btn-cancel {
-    background-color: var(--darkgreen);
+  background-color: var(--darkgreen);
 }
 
 .btn-save {
-    background-color: var(--tomato);
-    font-weight: 500;
+  background-color: var(--tomato);
+  font-weight: 500;
 }
-
 
 @media (max-width: 768px) {
+  .settings_overlay {
+    width: 92%;
+    height: 318px;
+    top: -350px;
+  }
 
-    .settings_overlay {
-        width: 92%;
-        height: 318px;
-        top: -350px;
+  .form-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .form-settings__title {
+    font-size: 25px;
+    text-align: center;
+    color: var(--darkgreen);
+  }
+
+  .form-settings__line {
+    padding-bottom: 10px;
+  }
+
+  .form-settings__time__title {
+    margin-bottom: 3px;
+  }
+
+  .form-settings__time-group {
+    label {
+      font-size: 15px;
+      margin-right: 3px;
     }
+  }
 
-    .form-settings {
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-    }
+  .form-settings__line-autostart__flex {
+    flex-direction: row;
+    justify-content: center;
+  }
 
-    .form-settings__title {
-        font-size: 25px;
-        text-align: center;
-        color: var(--darkgreen);
-    }
-
-    .form-settings__line {
-        padding-bottom: 10px;
-    }
-
-    .form-settings__time__title {
-        margin-bottom: 3px;
-    }
-
-    .form-settings__time-group {    
-        label {
-            font-size: 15px;
-            margin-right: 3px;
-        }
-    }
-
-    .form-settings__line-autostart__flex {
-        flex-direction: row;
-        justify-content: center;
-    }
-
-    .form-buttons__btn {
-        font-size: 15px;
-    }
-
+  .form-buttons__btn {
+    font-size: 15px;
+  }
 }
-
