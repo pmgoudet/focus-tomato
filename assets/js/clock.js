@@ -157,7 +157,8 @@ startPauseBtn.addEventListener("click", startPauseTimer);
 // SETTINGS
 
 settingsBtn.addEventListener("click", () => {
-  clockContainer.style.opacity = "0";
+  // clockContainer.style.opacity = "0";
+  clockContainer.style.display = "none";
   settingsContainer.style.display = "block";
 });
 
@@ -176,7 +177,8 @@ inputValue.forEach((input) => {
 
 saveBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  clockContainer.style.opacity = "1";
+  // clockContainer.style.opacity = "1";
+  clockContainer.style.display = "block";
   settingsContainer.style.display = "none";
   if (html.dataset.context == "focus") {
     // display clock
@@ -194,7 +196,7 @@ saveBtn.addEventListener("click", (e) => {
 
 cancelBtn.addEventListener("click", (e) => {
   e.preventDefault();
-  clockContainer.style.opacity = "1";
+  clockContainer.style.display = "block";
   settingsContainer.style.display = "none";
 
   focusTime.value = 25;

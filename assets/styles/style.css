@@ -180,6 +180,6 @@ footer {
   }
 
   footer {
-    display: none;
+    /* display: block; */
   }
 }
