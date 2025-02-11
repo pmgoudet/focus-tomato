@@ -36,7 +36,7 @@ function getTasks() {
 getTasks();
 
 function createTask(task) {
-  let newTask = `                        
+  let newTask = `
     <div class="task-flex">
       <button class="task__active-icon task-icon"></button>
       <div class="task__description">
@@ -124,7 +124,7 @@ function editTask(clickedBtn) {
 function deleteTask(clickedBtn) {
   let delText = clickedBtn.parentElement.parentElement.querySelector(
     ".task__description-text"
-  ).textContent; //!FAZER AQUELE ROLE PRA EVITAR PARENTELEMENT 2X
+  ).textContent; //!avoid .parentElement.parentElement
   let index = tasks.indexOf(delText);
 
   if (index !== -1) {
@@ -133,7 +133,7 @@ function deleteTask(clickedBtn) {
   }
 
   localStorage.setItem("taskItems", JSON.stringify(tasks));
-  clickedBtn.parentElement.remove();
+  clickedBtn.parentElement.parentElement.remove();
 }
 
 function readyTask(clickedBtn) {
@@ -141,7 +141,7 @@ function readyTask(clickedBtn) {
     ".task__description-text"
   ).textContent;
 
-  let newCompletedTask = `   
+  let newCompletedTask = `
       <button class="completed-tasks__task__recover task-icon" title="Want to recover this task?"></button>
       <div class="completed-tasks__description">
         <img class="completed-tasks__description__img"
@@ -187,6 +187,23 @@ taskList.addEventListener("click", (event) => {
   if (event.target.classList.contains("task__ready-icon")) {
     const clickedBtn = event.target;
     readyTask(clickedBtn);
+  }
+  if (event.target.classList.contains("task__menu-icon__option")) {
+    const taskMenuAll = document.querySelectorAll(".task__menu");
+    const clickedBtn = event.target
+      .closest(".task")
+      .querySelector(".task__menu");
+
+    if (clickedBtn.style.display == "flex") {
+      taskMenuAll.forEach((task) => {
+        task.style.display = "none";
+      });
+    } else {
+      taskMenuAll.forEach((task) => {
+        task.style.display = "none";
+      });
+      clickedBtn.style.display = "flex"; //! TRANSFORMAR EM FUNÇÃO
+    }
   }
 });
 
@@ -293,27 +310,3 @@ completedTaskList.addEventListener("click", (event) => {
     deleteCompletedTasks(event.target);
   }
 });
-
-// RESPONSIVE TASK
-
-//   document.addEventListener("DOMContentLoaded", function () {
-//     document.querySelectorAll(".task__menu-icon").forEach(menuIcon => {
-//         menuIcon.addEventListener("click", function (event) {
-//             event.stopPropagation(); // Evita fechar imediatamente ao clicar no botão
-//             let menu = this.nextElementSibling;
-//             menu.style.display = menu.style.display === "block" ? "none" : "block";
-//         });
-//     });
-
-//     // Fecha o menu ao clicar fora
-//     document.addEventListener("click", function () {
-//         document.querySelectorAll(".task__menu").forEach(menu => {
-//             menu.style.display = "none";
-//         });
-//     });
-
-//     // Impede que um clique no menu o feche imediatamente
-//     document.querySelectorAll(".task__menu").forEach(menu => {
-//         menu.addEventListener("click", event => event.stopPropagation());
-//     });
-// });

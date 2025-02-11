@@ -37,7 +37,7 @@
   input {
     border-radius: 5px;
     padding: 15px;
-    width: 70%;
+    width: 100%;
   }
 
   .task__add-task-btn {
@@ -77,24 +77,24 @@
     align-items: center;
     gap: 10px;
   }
+}
 
-  .task__description {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    padding: 0 15px;
-    background-color: var(--lightred);
-    box-shadow: var(--shadow);
-    border-radius: 5px;
-    width: 300px;
+.task__description {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 0 15px;
+  background-color: var(--lightred);
+  box-shadow: var(--shadow);
+  border-radius: 5px;
+  width: 330px;
 
-    .task__description-icon {
-      box-shadow: none;
-      height: 50px;
-      width: 53px;
-      background-color: transparent;
-    }
+  .task__description-icon {
+    box-shadow: none;
+    height: 50px;
+    width: 53px;
+    background-color: transparent;
   }
 }
 
@@ -312,8 +312,14 @@
     display: block;
   }
 
+  .task-flex {
+    width: calc(100vw - 60px);
+    margin: auto;
+    justify-content: space-between;
+  }
+
   .task__menu {
-    display: flex;
+    display: none;
     align-self: flex-end;
     gap: 10px;
   }
@@ -321,7 +327,7 @@
   .task {
     flex-direction: column;
     width: 98%;
-    gap: 5px;
+    gap: 10px;
 
     .task__description {
       width: 59vw;
