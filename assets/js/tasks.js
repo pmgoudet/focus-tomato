@@ -42,7 +42,7 @@ function createTask(task) {
       <div class="task__description">
         <div class="task__description-flex">
           <button class="task__description-icon"></button>
-          <p class="task__description-text">Ligar</p>
+          <p class="task__description-text">${task}</p>
         </div>
         <button class="task__menu-icon">
           <img
