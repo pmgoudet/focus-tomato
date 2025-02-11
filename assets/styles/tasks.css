@@ -136,6 +136,7 @@
 
 .task__active-icon:hover {
   background-image: url(../img/icons/clock-lightred-icon.svg);
+  background-color: var(--tomato);
 }
 
 .task__description-icon {
@@ -186,6 +187,7 @@
 
 .task__edit-icon:hover {
   background: url(../img/icons/edit-lightred-icon.svg) center no-repeat;
+  background-color: var(--tomato);
 }
 
 .active .task__delete-icon:hover,
@@ -200,6 +202,7 @@
 
 .task__delete-icon:hover {
   background: url(../img/icons/trash-lightred-icon.svg) center no-repeat;
+  background-color: var(--tomato);
 }
 
 .task__ready-icon {
@@ -331,6 +334,10 @@
 
     .task__description {
       width: 59vw;
+
+      .task__description-icon {
+        display: none;
+      }
     }
   }
 }
