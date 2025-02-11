@@ -180,6 +180,7 @@ footer {
   }
 
   footer {
-    /* display: block; */
+    position: static;
+    margin-top: 40px;
   }
 }
