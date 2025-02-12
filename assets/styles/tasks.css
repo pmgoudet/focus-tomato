@@ -68,8 +68,8 @@
   margin-bottom: 15px;
   width: 100%;
 
-  button {
-    background-color: var(--lightred);
+  .task__menu-icon {
+    background-color: rgb(255, 255, 255, 0);
   }
 
   .task__description-flex {
@@ -321,6 +321,14 @@
     justify-content: space-between;
   }
 
+  .task-icon {
+    background-color: rgb(255, 255, 255, 0.5);
+  }
+
+  .completed-tasks__task__recover {
+    background-color: var(--darkgreen);
+  }
+
   .task__menu {
     display: none;
     align-self: flex-end;
@@ -333,7 +341,8 @@
     gap: 10px;
 
     .task__description {
-      width: 59vw;
+      width: 65vw;
+      background-color: rgb(255, 255, 255, 0.5);
 
       .task__description-icon {
         display: none;

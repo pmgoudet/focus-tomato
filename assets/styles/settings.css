@@ -143,14 +143,14 @@
 @media (max-width: 768px) {
   .settings_overlay {
     width: 92%;
-    height: 313px;
-    /* top: -350px; */
+    height: 337px;
+    margin-top: 30px;
   }
 
   .form-settings {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
   }
 
   .form-settings__title {
