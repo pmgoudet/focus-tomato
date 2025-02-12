@@ -28,11 +28,8 @@ L'objectif principal était de pratiquer plusieurs concepts clés, notamment :
 
 Ce fut sans aucun doute un défi très intéressant. Malgré quelques points perfectibles, le projet est déjà **fonctionnel** et permet à l'utilisateur de profiter de ses fonctionnalités.  
 
-## 🛠️ Technologies utilisées  
-
-- **HTML**  
-- **CSS**  
-- **JavaScript**  
+## 🔧 **Technologies**
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white)  ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
 ---
 
@@ -67,11 +64,8 @@ The main goal was to practice several key concepts, including:
 
 This was undoubtedly a very interesting challenge. Despite some minor improvements that could be made, the project is already **functional** and allows users to take advantage of its features.  
 
-## 🛠️ Technologies Used  
-
-- **HTML**  
-- **CSS**  
-- **JavaScript**  
+## 🔧 **Technologies**
+![HTML5](https://img.shields.io/badge/-HTML5-E34F26?logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/-CSS3-1572B6?logo=css3&logoColor=white)  ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
 ---
 
