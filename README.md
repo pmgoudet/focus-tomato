@@ -37,3 +37,42 @@ Ce fut sans aucun doute un défi très intéressant. Malgré quelques points per
 ---
 
 📌 Ce projet reste ouvert à des améliorations futures ! 🚀  
+
+---
+#
+---
+
+
+Focus Tomato is a project based on the **Pomodoro technique** for time management, designed by **Francesco Cirillo** in the 1980s to improve productivity efficiently.  
+It is a **personal project** aimed solely at deepening my knowledge of **JavaScript**. 
+
+### <a href="https://focus-tomato.vercel.app/" target="_blank">🔗 Project Link - GO!</a>
+
+## 🎨 Design and Responsiveness  
+
+**CSS** has been refined to provide a better presentation of the project since a well-made but poorly structured project loses considerable value.  
+**Responsiveness** for **mobile phones** has been implemented, but **not for tablets**, which remains an improvement to be made in the future.  
+
+## 🚀 Features and Learning Objectives  
+
+The main goal was to practice several key concepts, including:  
+
+- **DOM manipulation** through task management.  
+- **Drag and Drop** to easily organize tasks.  
+- **Using LocalStorage** to store data.  
+- **Data attributes** for a dynamic page.  
+- **Countdown timer** with start, pause, and customizable durations.  
+- **Automation of the Pomodoro cycle** (focus time, short breaks, and long breaks).  
+- **Adding sounds** to enhance user experience.  
+
+This was undoubtedly a very interesting challenge. Despite some minor improvements that could be made, the project is already **functional** and allows users to take advantage of its features.  
+
+## 🛠️ Technologies Used  
+
+- **HTML**  
+- **CSS**  
+- **JavaScript**  
+
+---
+
+📌 This project remains open to future improvements! 🚀  
