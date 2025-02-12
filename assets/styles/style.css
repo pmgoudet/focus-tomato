@@ -56,6 +56,12 @@ html {
   background-size: contain;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 97.7%;
+}
+
 button {
   cursor: pointer;
   border: none;
@@ -67,7 +73,7 @@ input {
 
 .header-container {
   width: 1200px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .logo {
@@ -90,6 +96,7 @@ main {
   margin: auto;
   display: flex;
   justify-content: space-between;
+  flex: 1;
 }
 
 .info-container {
