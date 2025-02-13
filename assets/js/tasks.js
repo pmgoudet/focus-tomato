@@ -169,6 +169,22 @@ btnAddTask.addEventListener("click", () => {
   }
 });
 
+function editTaskBtn(event) {
+  const taskMenuAll = document.querySelectorAll(".task__menu");
+  const clickedBtn = event.target.closest(".task").querySelector(".task__menu");
+
+  if (clickedBtn.style.display == "flex") {
+    taskMenuAll.forEach((task) => {
+      task.style.display = "none";
+    });
+  } else {
+    taskMenuAll.forEach((task) => {
+      task.style.display = "none";
+    });
+    clickedBtn.style.display = "flex";
+  }
+}
+
 // ALL TASKS EVENT LISTENER
 
 taskList.addEventListener("click", (event) => {
@@ -188,22 +204,12 @@ taskList.addEventListener("click", (event) => {
     const clickedBtn = event.target;
     readyTask(clickedBtn);
   }
-  if (event.target.classList.contains("task__menu-icon__option")) {
-    const taskMenuAll = document.querySelectorAll(".task__menu");
-    const clickedBtn = event.target
-      .closest(".task")
-      .querySelector(".task__menu");
-
-    if (clickedBtn.style.display == "flex") {
-      taskMenuAll.forEach((task) => {
-        task.style.display = "none";
-      });
-    } else {
-      taskMenuAll.forEach((task) => {
-        task.style.display = "none";
-      });
-      clickedBtn.style.display = "flex"; //! TRANSFORMAR EM FUNÇÃO
-    }
+  if (
+    event.target.classList.contains("task__menu-icon__option") ||
+    event.target.classList.contains("task__description") ||
+    event.target.classList.contains("task__description-text")
+  ) {
+    editTaskBtn(event);
   }
 });
 
