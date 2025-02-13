@@ -8,6 +8,7 @@ const completedTaskList = document.querySelector(".completed-tasks__list");
 const clearBtn = document.querySelector(".completed-tasks__head__btn");
 let tasks = [];
 let completedTasks = [];
+let pageWidth = window.innerWidth;
 
 // CREATE TASK
 
@@ -209,7 +210,9 @@ taskList.addEventListener("click", (event) => {
     event.target.classList.contains("task__description") ||
     event.target.classList.contains("task__description-text")
   ) {
-    editTaskBtn(event);
+    if (pageWidth < 768) {
+      editTaskBtn(event);
+    }
   }
 });
 

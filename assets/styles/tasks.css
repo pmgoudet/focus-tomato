@@ -325,8 +325,17 @@
     background-color: rgb(255, 255, 255, 0.5);
   }
 
+  .completed-tasks-container {
+    padding: 15px 5px;
+    max-width: calc(100vw - 70px);
+  }
+
   .completed-tasks__task__recover {
     background-color: var(--darkgreen);
+  }
+
+  .completed-tasks__description__img {
+    display: none;
   }
 
   .task__menu {
