@@ -344,6 +344,11 @@
     gap: 10px;
   }
 
+  /* .task__edit-icon:hover {
+    background: url(../img/icons/edit-red-icon.svg) center no-repeat;
+    background-color: rgb(255, 255, 255, 0.5);
+  } */
+
   .task {
     flex-direction: column;
     width: 98%;

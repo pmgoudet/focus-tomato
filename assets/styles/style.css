@@ -120,12 +120,6 @@ main {
   text-decoration: none;
 }
 
-/* footer {
-  position: relative;
-  bottom: -22px;
-  margin-top: 40px;
-} */
-
 .footer-container {
   background-color: var(--tomato);
   margin: auto;

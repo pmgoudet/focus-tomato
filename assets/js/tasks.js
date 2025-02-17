@@ -9,6 +9,7 @@ const clearBtn = document.querySelector(".completed-tasks__head__btn");
 let tasks = [];
 let completedTasks = [];
 let pageWidth = window.innerWidth;
+//! let editInputControl = true;
 
 // CREATE TASK
 
@@ -101,12 +102,25 @@ function editTask(clickedBtn) {
   );
   const input = document.createElement("input");
   input.type = "text";
-  input.setAttribute("maxlength", "50");
+  input.setAttribute("maxlength", "30");
   input.classList.add("input-edit");
   input.value = taskDescrip.textContent;
   taskDescrip.replaceWith(input);
   input.focus();
   let index = tasks.indexOf(taskDescrip.textContent);
+
+  //! --------------
+  // editInputControl = true;
+
+  // clickedBtn.addEventListener("click", () => {
+  //   if (editInputControl == false) {
+  //     input.blur();
+  //   } else {
+  //     console.log("aooo");
+  //     input.blur();
+  //   }
+  // });
+  //! ---------------
 
   input.addEventListener("blur", () => {
     const newTaskDescrip = document.createElement("p");
@@ -120,6 +134,7 @@ function editTask(clickedBtn) {
       localStorage.setItem("taskItems", JSON.stringify(tasks));
     }
   });
+  // editInputControl = false; //! ------------
 }
 
 function deleteTask(clickedBtn) {
